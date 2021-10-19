@@ -22,7 +22,7 @@ func TestAll(t *testing.T) {
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
 
-			txt := jsontyperegistry.MustJSONStringWithTypeRegister(c.value)
+			txt := jsontyperegistry.MustJSONStringWithRegisterType(c.value)
 			t.Log(txt)
 			v := jsontyperegistry.MustNewWithJSONString(txt)
 

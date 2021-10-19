@@ -9,12 +9,12 @@ import (
 
 var reg = typeregistry.New()
 
-type Object struct {
+type obj struct {
 	Type  string
 	Value interface{}
 }
 
-func MustJSONStringWithTypeRegister(v interface{}) string {
+func MustJSONStringWithRegisterType(v interface{}) string {
 	err := reg.Register(v)
 	if err == typeregistry.ErrDuplicateEntry {
 		err = nil
@@ -26,7 +26,7 @@ func MustJSONStringWithTypeRegister(v interface{}) string {
 
 	t := typeregistry.GetLongTypeName(v)
 
-	r, err := json.Marshal(&Object{
+	r, err := json.Marshal(&obj{
 		Type:  t,
 		Value: v,
 	})
