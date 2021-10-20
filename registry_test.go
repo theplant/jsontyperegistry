@@ -18,11 +18,13 @@ type Author struct {
 }
 
 func TestAll(t *testing.T) {
-
+	for _, c := range cases {
+		jsontyperegistry.MustRegisterType(c.value)
+	}
+	
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-
-			txt := jsontyperegistry.MustJSONStringWithRegisterType(c.value)
+			txt := jsontyperegistry.MustJSONString(c.value)
 			t.Log(txt)
 			v := jsontyperegistry.MustNewWithJSONString(txt)
 

@@ -25,8 +25,7 @@ func MustRegisterType(v interface{}) {
 	}
 }
 
-func MustJSONStringWithRegisterType(v interface{}) string {
-	MustRegisterType(v)
+func MustJSONString(v interface{}) string {
 
 	t := typeregistry.GetLongTypeName(v)
 
