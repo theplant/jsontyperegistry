@@ -14,7 +14,7 @@ type obj struct {
 	Value interface{}
 }
 
-func MustJSONStringWithRegisterType(v interface{}) string {
+func MustRegisterType(v interface{}) {
 	err := reg.Register(v)
 	if err == typeregistry.ErrDuplicateEntry {
 		err = nil
@@ -23,6 +23,10 @@ func MustJSONStringWithRegisterType(v interface{}) string {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func MustJSONStringWithRegisterType(v interface{}) string {
+	MustRegisterType(v)
 
 	t := typeregistry.GetLongTypeName(v)
 
