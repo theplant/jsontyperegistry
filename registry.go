@@ -2,12 +2,11 @@ package jsontyperegistry
 
 import (
 	"encoding/json"
+	"errors"
 	"reflect"
-
-	"github.com/vedranvuk/typeregistry"
 )
 
-var reg = typeregistry.New()
+var reg = New()
 
 type obj struct {
 	Type  string
@@ -16,7 +15,7 @@ type obj struct {
 
 func MustRegisterType(v interface{}) {
 	err := reg.Register(v)
-	if err == typeregistry.ErrDuplicateEntry {
+	if errors.Is(err, ErrDuplicateEntry) {
 		err = nil
 	}
 
@@ -27,7 +26,7 @@ func MustRegisterType(v interface{}) {
 
 func MustJSONString(v interface{}) string {
 
-	t := typeregistry.GetLongTypeName(v)
+	t := GetLongTypeName(v)
 
 	r, err := json.Marshal(&obj{
 		Type:  t,

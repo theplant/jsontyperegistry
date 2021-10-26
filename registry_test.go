@@ -72,6 +72,16 @@ var cases = []struct {
 		},
 	},
 	{
+		name: "object pointer again",
+		value: &Post{
+			Author: &Author{
+				Name: "Tom",
+				Age:  33,
+			},
+			Title: "123",
+		},
+	},
+	{
 		name: "object struct",
 		value: Post{
 			Author: &Author{
